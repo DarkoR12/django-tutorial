@@ -257,6 +257,7 @@ Importamos la vista y la agregamos como ruta (`path`) a una lista de rutas (`url
 Finalmente incluímos estas rutas en el fichero `urls.py` del directorio de proyecto (`myblog/urls.py`); agregamos la lista de rutas de nuestra aplicación blog a la lista de rutas del proyecto bajo la ruta (`blog/`):
 
 ```python
+from django.urls import path, include # Importar include
 urlpatterns = [
     path('blog/', include('blog.urls')),
 
@@ -508,18 +509,18 @@ python manage.py migrate
 Si queremos mostrar el campo en nuestros templates, solamente tenemos que imprimir el usuario como cualquier otro atributo del objeto:
 
 ```html
-<h3>By: {{ object.autor.username }}</h3>
+<h3>By: {{ object.user.username }}</h3>
 ```
 
 Pero esto quedaría muy feo cuando no hubiese un autor definido, entonces vamos a encapsularlo en un bloque condicional:
 
 ```html
-{% if object.autor %}
-    <h3>By: {{ object.autor.username }}</h3>
+{% if object.user %}
+    <h3>By: {{ object.user.username }}</h3>
 {% endif %}
 ```
 
-Así, cuando no exista un valor para el campo `autor`, no se mostrará la etiqueta `h3`.
+Así, cuando no exista un valor para el campo `user`, no se mostrará la etiqueta `h3`.
 
 ## 9. Siguientes pasos
 
